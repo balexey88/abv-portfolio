@@ -8,3 +8,5 @@ Author: Alexey Bolgunovsky
 Author URI: https://www.linkedin.com/in/alexey-bolgunovsky-877042a8/
 Text Domain: abv-portfolio
 */
+
+require_once plugin_dir_path(__FILE__) . 'post_types.php';
