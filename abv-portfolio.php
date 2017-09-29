@@ -11,3 +11,4 @@ Text Domain: abv-portfolio
 
 require_once plugin_dir_path(__FILE__) . 'post_types.php';
 require_once plugin_dir_path(__FILE__) . 'taxonomy.php';
+require_once plugin_dir_path(__FILE__) . 'widgets.php';
