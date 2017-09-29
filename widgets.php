@@ -17,6 +17,7 @@ class ABV_Portfolio_Widget extends WP_Widget {
   public function form($instance) {
     $title = ! empty( $instance['title'] ) ? $instance['title'] : '';
     $num_items = ! empty( $instance['num_items'] ) ? $instance['num_items'] : 3;
+    $sort = ! empty( $instance['sort'] ) ? $instance['sort'] : 'date';
     ?>
     <p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'abv-portfolio' ); ?></label>
@@ -32,6 +33,15 @@ class ABV_Portfolio_Widget extends WP_Widget {
           <?php endfor; ?>
         </select>
     </p>
+
+    <p>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'sort' ) ); ?>"><?php esc_attr_e( 'Sorting:', 'abv-portfolio' ); ?></label>
+
+        <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'sort' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'sort' ) ); ?>" >
+          <option <?php if ($sort == 'date') echo 'selected="selected"'?> value="date"><?=__('Date', 'abv-portfolio');?></option>
+          <option <?php if ($sort == 'title') echo 'selected="selected"'?> value="title"><?=__('Title', 'abv-portfolio');?></option>
+        </select>
+    </p>
     <?php
   }
 
@@ -40,6 +50,7 @@ class ABV_Portfolio_Widget extends WP_Widget {
 
     $title = ! empty( $instance['title'] ) ? $instance['title'] : __('Latest portfolio', 'abv-portfolio');
     $num_items = ! empty( $instance['num_items'] ) ? $instance['num_items'] : 3;
+    $sort = ! empty( $instance['sort'] ) ? $instance['sort'] : 'date';
 
     if ( ! empty( $title ) ) {
       echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
@@ -52,6 +63,11 @@ class ABV_Portfolio_Widget extends WP_Widget {
       'order'       => 'DESC',
       'posts_per_page' => $num_items,
     ];
+
+    if ( $sort == 'title' ) {
+      $params['orderby'] = 'title';
+      $params['order'] = 'ASC';
+    }
 
     $query = new WP_Query($params);
 
