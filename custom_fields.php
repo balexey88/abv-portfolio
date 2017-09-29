@@ -1,6 +1,6 @@
 <?php
 /*
-Taxonomies
+Custom fields
 */
 
 add_action('add_meta_boxes_abv_portfolio', 'abv_add_metabox');
