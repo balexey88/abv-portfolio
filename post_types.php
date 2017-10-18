@@ -36,6 +36,17 @@ function abv_add_portfolio() {
 		'items_list_navigation' => __( 'Items list navigation', 'abv-portfolio' ),
 		'filter_items_list'     => __( 'Filter items list', 'abv-portfolio' ),
 	);
+
+	$capabilities = array(
+		'edit_post'             => 'edit_portfolio',
+		'read_post'             => 'read_portfolio',
+		'delete_post'           => 'delete_portfolio',
+		'edit_posts'            => 'edit_portfolio',
+		'edit_others_posts'     => 'edit_others_portfolio',
+		'publish_posts'         => 'publish_portfolio',
+		'read_private_posts'    => 'read_private_portfolio',
+	);
+
 	$args = array(
     'label'                 => __( 'Portfolio', 'abv-portfolio' ),
     'description'           => __( 'My work sample', 'abv-portfolio' ),
@@ -54,8 +65,9 @@ function abv_add_portfolio() {
     'has_archive'           => true,
     'exclude_from_search'   => false,
     'publicly_queryable'    => true,
-    'capability_type'       => 'post',
+    // 'capability_type'       => 'post',
     'show_in_rest'          => false,
+		'capabilities'          => $capabilities,
 	);
 
   register_post_type( 'abv_portfolio', $args );

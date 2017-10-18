@@ -13,6 +13,7 @@ require_once plugin_dir_path(__FILE__) . 'post_types.php';
 require_once plugin_dir_path(__FILE__) . 'taxonomy.php';
 require_once plugin_dir_path(__FILE__) . 'widgets.php';
 require_once plugin_dir_path(__FILE__) . 'custom_fields.php';
+require_once plugin_dir_path(__FILE__) . 'roles.php';
 
 add_action('admin_enqueue_scripts', 'abv_admin_scripts');
 

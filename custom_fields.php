@@ -49,3 +49,20 @@ function abv_portfolio_save( $post_id ) {
     update_post_meta( $post_id, '_abv_portfolio_date', $date );
     update_post_meta( $post_id, '_abv_portfolio_url', $url );
 }
+
+add_filter( 'manage_abv_portfolio_posts_columns' , 'abv_show_posts_columns', 10 );
+
+function abv_show_posts_columns( $columns ) {
+    $columns['date_column'] = __( 'Portfolio Date', 'abv-portfolio' );
+    $columns['url_column'] = __( 'Portfolio Url', 'abv-portfolio' );
+
+    return $columns;
+}
+
+add_action( 'manage_abv_portfolio_posts_custom_column' , 'abv_posts_columns_content1', 10, 2 );
+
+function abv_posts_columns_content1( $column, $post_id ) {
+    if ($column == 'date_column') {
+        echo get_post_meta($post_id, '_abv_portfolio_date', true);
+    }
+}
